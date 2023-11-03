@@ -108,7 +108,7 @@ var room_user_id={};
 var room_ids = {};
 // socket.io 서버를 시작합니다.
 var io = socketio.listen(server);
-io.adapter(redis({host:'varopetredis.cafe24.com',port:21660}));
+//io.adapter(redis({host:'varopetredis.cafe24.com',port:21660}));
 //console.log('socket.io 요청을 받아들일 준비가 되었습니다.');
 // 클라이언트가 연결했을 때의 이벤트 처리
 io.sockets.on('connection', function(socket) {
