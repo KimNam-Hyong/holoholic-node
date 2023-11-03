@@ -23,7 +23,7 @@ var mysql=require('mysql');
 var async=require('async');
 //===== Socket.IO 사용 =====//
 var socketio = require('socket.io');
-var redis= require('socket.io-redis');
+
 //===== cors 사용 - 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원 =====//
 var cors = require('cors');
 //===== Express 서버 객체 만들기 =====//
@@ -31,17 +31,6 @@ var app = express();
 //===== 뷰 엔진 설정 =====//
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-//mysql 정보
-global.pool = mysql.createPool({
-	connectionLimit : 5000, 
-	host	: '14.48.175.170',
-	user     : 'varopet2',
-    password : 'sbtpsxja!@#',
-    database : 'varopet2',
-    debug    :  false,
-	port	 : 3306
-});
-var dbUtil=require('./config/dbUtil');
 //===== 서버 변수 설정 및 static으로 public 폴더 설정  =====//
 app.set('port', process.env.PORT || 8010);
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -58,19 +47,7 @@ app.use(expressSession({
 app.use(cors());
 //===== 라우터 미들웨어 사용 =====//
 app.use(app.router);
-app.get('/', routes.index);
-app.get('/users', user.list);
-/*
-var isLoggedIn = function(req, res, next) {
-	//console.log('isLoggedIn 미들웨어 호출됨.');
-	
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	
-	res.redirect('/');
-}
-*/
+
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
  static: {
