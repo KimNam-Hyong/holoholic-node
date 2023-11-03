@@ -4,13 +4,16 @@
   "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
   "main": "server.js",
   "repository": "",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "cross-env NODE_ENV=production pm2 start app.js"
+  },
   "author": "Mostafa Eweda <mo.eweda@gmail.com>",
   "dependencies": {
     "async": "^0.2.10",
     "body-parser": "^1.18.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
-    "cross-env": "^7.0.3",
     "ejs": "^2.5.7",
     "express": "^3.2.6",
     "express-error-handler": "^1.1.0",
